@@ -2,7 +2,7 @@
 #include "main.h"
 
 /**
- * _strncat - concatenate strings to n bytes
+ * _strncat - concatenate strings
  * @dest: destination string
  * @src: sourcs string
  * @n: max bytes
@@ -18,12 +18,12 @@ char *_strncat(char *dest, char *src, int n)
 	{
 		i++;
 	}
-	while (j < n)
+	while (j < n && src[j] != '\0')
 	{
 		dest[i] = src[j];
 		i++;
 		j++;
 	}
 	dest[i] = '\0';
-	retrun (dest);
+	return (dest);
 }
