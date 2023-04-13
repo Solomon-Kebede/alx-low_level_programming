@@ -15,23 +15,22 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
     hash_node_t *node;
 
     /*allocate memory */
-    node = malloc(sizeof(hash_node_t *));
+    node = malloc(sizeof(hash_node_t));
     if (node == NULL)
         return (0);
 
     /* get index to store value based of hashed key */
     index = key_index((unsigned char *)key, ht->size);
-    /* if the value at a specific index is empty */
+
+    node->key = strdup(key);
+    node->value = strdup(value);
+
     if (ht->array[index] == NULL)
-    {
-        /* set the value */
-        /* printf("%s\n", (char *)value);*/
-        /* assign the respective values */
-        node->key = strdup(key);
-        node->value = strdup(value);
         node->next = NULL;
-        ht->array[index] = node;
-    }
+    else
+        node->next = ht->array[index];
+
+    ht->array[index] = node;
     
     return 1;
 }
