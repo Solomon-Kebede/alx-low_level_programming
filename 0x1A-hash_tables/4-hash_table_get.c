@@ -26,7 +26,7 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 	node = ht->array[index];
 	while (node)
 	{
-		if (node != NULL)
+		if (strcmp(key, node->key) == 0)
 			return (node->value);
 		node = node->next;
 	}
