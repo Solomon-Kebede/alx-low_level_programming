@@ -25,13 +25,19 @@ void hash_table_print(const hash_table_t *ht)
 			if (ht->array[index])
 			{
 				/* printf("\ncount = %d\n", count); */
-				printf("'%s': '%s'", ht->array[index]->key, ht->array[index]->value);
-				printf(", ");
 				count++;
 			}
 		}
-		if (count > 0)
-			printf("\b\b");
+		for (index = 0; index <= ht->size; index++)
+		{
+			if (ht->array[index])
+			{
+				printf("'%s': '%s'", ht->array[index]->key, ht->array[index]->value);
+				if (count > 1)
+					printf(", ");
+				count--;
+			}
+		}
 		printf("}\n");
 	}
 }
