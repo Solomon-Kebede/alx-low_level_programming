@@ -25,6 +25,14 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	/* get index to store value based of hashed key */
 	index = key_index((unsigned char *)key, ht->size);
 
+	/* update the value to new if collision */
+	if (ht->array[index] != NULL)
+		if (strcmp(key, ht->array[index]->key) == 0)
+		{
+			ht->array[index]->value = strdup(value);
+			return (1);
+		}
+
 	node->key = strdup(key);
 	node->value = strdup(value);
 
