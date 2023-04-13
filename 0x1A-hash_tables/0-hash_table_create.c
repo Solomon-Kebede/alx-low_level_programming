@@ -11,13 +11,21 @@ hash_table_t *hash_table_create(unsigned long int size)
 {
 	/* declare a new hashtable */
 	hash_table_t *new_array;
-	hash_node_t *new_node;
+
+	/* Invalid size or size == 0 */
+	if (!size)
+		return (NULL);
 
 	/* memory allocation */
-	new_node = malloc(size * sizeof(hash_node_t));
 	new_array = malloc(sizeof(hash_table_t));
 
-	if (new_array == NULL && new_node == NULL)
+	if (new_array == NULL)
 		return (NULL);
+
+	new_array->size = size;
+	new_array->array = malloc(size * sizeof(hash_node_t));
+	if (!new_array->array)
+		return (NULL);
+
 	return (new_array);
 }
